@@ -70,6 +70,14 @@ internal class AEXMLParser: NSObject, XMLParserDelegate {
         currentElement = nil
     }
     
+    func parser(_ parser: XMLParser, foundComment comment: String) {
+        
+        currentElement = currentParent?.addChild(name: "comment", attributes: [:])
+        currentElement?.value = comment
+        currentElement = nil
+        
+    }
+    
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         self.parseError = parseError
     }
